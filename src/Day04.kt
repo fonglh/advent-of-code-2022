@@ -19,6 +19,18 @@ fun main() {
         return min1 <= max2 && min2 <= max1
     }
 
+    fun overlapsObvious(firstElf: List<Int>, secondElf: List<Int>): Boolean {
+        val min1 = firstElf[0]
+        val max1 = firstElf[1]
+        val min2 = secondElf[0]
+        val max2 = secondElf[1]
+
+        return min2 in min1 .. max1 ||
+                max2 in min1 .. max1 ||
+                min1 in min2 .. max2 ||
+                max1 in min2 .. max2
+    }
+
     fun part1(input: List<String>): Int {
         var count = 0
         input.forEach {
@@ -47,10 +59,10 @@ fun main() {
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day04_test")
- //   check(part1(testInput) == 2)
+    check(part1(testInput) == 2)
     check(part2(testInput) == 4)
 
     val input = readInput("Day04")
-//    println(part1(input))
+    println(part1(input))
     println(part2(input))
 }
